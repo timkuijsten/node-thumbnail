@@ -1,0 +1,34 @@
+{
+  "name": "thumbnail",
+  "version": "0.1.5",
+  "author": {
+    "name": "Tim Kuijsten",
+    "email": "tim@netsend.nl",
+    "url": "https://github.com/timkuijsten"
+  },
+  "license": "MIT",
+  "description": "Small utility to easily and efficiently create thumbnails using GraphicsMagick.",
+  "keywords": [
+    "image",
+    "picture",
+    "photo",
+    "resize",
+    "thumbnail"
+  ],
+  "engines": {
+    "node": ">=0.8.22"
+  },
+  "main": "main.js",
+  "bugs": "https://github.com/timkuijsten/node-thumbnail/issues",
+  "devDependencies": {
+    "mocha": ">=1.8.2",
+    "should": ">=1.2.2"
+  },
+  "scripts": {
+    "test": "mocha ./test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/timkuijsten/node-thumbnail.git"
+  }
+}
