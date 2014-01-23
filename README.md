@@ -2,7 +2,7 @@
 
 Small utility to easily and efficiently create thumbnails using GraphicsMagick.
 
-# Usage
+## Usage
 
     // get a 100x100 thumbnail of /path/to/originals/picture.jpg
 
@@ -13,13 +13,13 @@ Small utility to easily and efficiently create thumbnails using GraphicsMagick.
       // "filename" is the name of the thumb in '/path/to/thumbnails'
     });
 
-# Installation
+## Installation
 
     $ npm install thumbnail
 
-# API
+## API
 
-## Thumbnail(rootOriginals, rootThumbnails, [supportedImageTypes])
+### Thumbnail(rootOriginals, rootThumbnails, [supportedImageTypes])
 * rootOriginals String
 * rootThumbnails String
 * supportedImageTypes Array, default = [ 'png', 'jpg', 'jpeg', 'gif' ]
@@ -29,7 +29,7 @@ files can be found and `rootThumbnails` is the path where thumbnails can be foun
 
 `supportedImageTypes` is an optional array of supported images. Make sure your GraphicsMagick installation supports these types.
 
-## thumbnail.ensureThumbnail(filename, width, height, cb)
+### thumbnail.ensureThumbnail(filename, width, height, cb)
 * filename String
 * width Number
 * height Number
@@ -46,29 +46,25 @@ is returned via the callback.
 as the second parameter. And as the third parameter a boolean if the thumb has just been created
 or if it already existed (in that case it will be false).
 
-## thumbnail.rootOriginals
+### thumbnail.rootOriginals
 * String
 
 path to original pictures as given to the constructor
 
-## thumbnail.rootThumbnails
+### thumbnail.rootThumbnails
 * String
 
 path to thumbnails as given to the constructor
 
-## thumbnail.supportedImageTypes
+### thumbnail.supportedImageTypes
 * Array
 
 supported image types as given to the constructor
 
-# Requirements
+## Requirements
 
 [GraphicksMagick](http://www.graphicsmagick.org/) must be installed on your system and the `gm` command should be available in the node environment. 
 
-# License
+## License
 
 MIT, see LICENSE
-
-# Bugs
-
-See <https://github.com/timkuijsten/node-thumbnail/issues>.
