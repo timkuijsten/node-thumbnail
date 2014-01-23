@@ -7,7 +7,7 @@ var execFile = require('child_process').execFile;
  *
  * @param {String} rootOriginals  the path where original pictures are stored.
  * @param {String} rootThumbnails  the path where the thumbnails are stored.
- * @param {Array, default: [ 'png', 'jpg', 'jpeg', 'gif' ]} supportedImageTypes  
+ * @param {Array, default: [ 'png', 'jpg', 'jpeg', 'gif' ]} supportedImageTypes
  *                                       list of extensions to support
  */
 function Thumbnail(rootOriginals, rootThumbnails, supportedImageTypes) {
@@ -56,7 +56,7 @@ Thumbnail.prototype.ensureThumbnail = function ensureThumbnail(filename, width, 
   if (filename !== path.basename(filename)) { throw new Error('filename contains a path'); }
 
   var extension = path.extname(filename);
-  if (!~this._supportedExtensions.indexOf(extension)) { throw new TypeError('image type not supported'); }
+  if (!~this._supportedExtensions.indexOf(extension.toLowerCase())) { throw new TypeError('image type not supported'); }
 
   var wxh = width+'x'+height;
 
