@@ -1,11 +1,12 @@
 {
   "name": "thumbnail",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "author": {
     "name": "Tim Kuijsten",
     "email": "tim@netsend.nl",
     "url": "https://github.com/timkuijsten"
   },
+  "contributors": ["Sander Baas"],
   "license": "MIT",
   "description": "Small utility to easily and efficiently create thumbnails using GraphicsMagick.",
   "keywords": [
