@@ -54,12 +54,8 @@ describe('Thumbnail', function () {
       (function () { thumbnail.ensureThumbnail(); }).should.throw('provide filename');
     });
 
-    it('should require width', function() {
-      (function () { thumbnail.ensureThumbnail(fixtureFile); }).should.throw('provide width');
-    });
-
-    it('should require height', function() {
-      (function () { thumbnail.ensureThumbnail(fixtureFile, 16); }).should.throw('provide height');
+    it('should require width and/or height', function() {
+      (function () { thumbnail.ensureThumbnail(fixtureFile); }).should.throw('provide width and/or height');
     });
 
     it('should require cb', function() {

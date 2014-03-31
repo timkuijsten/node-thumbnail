@@ -44,13 +44,12 @@ module.exports = Thumbnail;
  */
 Thumbnail.prototype.ensureThumbnail = function ensureThumbnail(filename, width, height, cb) {
   if (!filename) { throw new Error('provide filename'); }
-  if (!width) { throw new Error('provide width'); }
-  if (!height) { throw new Error('provide height'); }
+  if (!width && !height) { throw new Error('provide width and/or height'); }
   if (!cb) { throw new Error('provide cb'); }
 
   if (typeof filename !== 'string') { throw new TypeError('filename must be a string'); }
-  if (typeof width !== 'number') { throw new TypeError('width must be a number'); }
-  if (typeof height !== 'number') { throw new TypeError('height must be a number'); }
+  if (width && typeof width !== 'number') { throw new TypeError('width must be a number'); }
+  if (height && typeof height !== 'number') { throw new TypeError('height must be a number'); }
   if (typeof cb !== 'function') { throw new TypeError('cb must be a function'); }
 
   if (filename !== path.basename(filename)) { throw new Error('filename contains a path'); }
@@ -58,7 +57,9 @@ Thumbnail.prototype.ensureThumbnail = function ensureThumbnail(filename, width, 
   var extension = path.extname(filename);
   if (!~this._supportedExtensions.indexOf(extension.toLowerCase())) { throw new TypeError('image type not supported'); }
 
-  var wxh = width+'x'+height;
+  var wxh = '';
+  if (height) { wxh = 'x'+height; }
+  if (width) { wxh = width + wxh; }
 
   var thumbFilename = path.basename(filename, extension)+'-'+wxh+extension;
 
@@ -77,11 +78,17 @@ Thumbnail.prototype.ensureThumbnail = function ensureThumbnail(filename, width, 
         '-size', wxh,
         that.rootOriginals+'/'+filename,
         '-thumbnail', wxh+'^',
-        '-gravity', 'center',
-        '-extent', wxh,
+        '-gravity', 'center'
+      ];
+
+      if (height && width) {
+        args = args.concat(['-extent', wxh]);
+      }
+
+      args = args.concat([
         '+profile', '"*"',
         that.rootThumbnails+'/'+thumbFilename
-      ];
+      ]);
 
       var opts = { timeout: 5000 };
 
