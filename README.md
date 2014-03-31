@@ -13,6 +13,24 @@ Small utility to easily and efficiently create thumbnails using GraphicsMagick.
       // "filename" is the name of the thumb in '/path/to/thumbnails'
     });
 
+    // get a thumbnail of 100 pixels wide, height auto
+
+    var Thumbnail = require('thumbnail');
+    var thumbnail = new Thumbnail('/path/to/originals', '/path/to/thumbnails');
+
+    thumbnail.ensureThumbnail('picture.jpg', 100, null, function (err, filename) {
+      // "filename" is the name of the thumb in '/path/to/thumbnails'
+    });
+
+    // get a thumbnail of 100 pixels high, width auto
+
+    var Thumbnail = require('thumbnail');
+    var thumbnail = new Thumbnail('/path/to/originals', '/path/to/thumbnails');
+
+    thumbnail.ensureThumbnail('picture.jpg', null, 100, function (err, filename) {
+      // "filename" is the name of the thumb in '/path/to/thumbnails'
+    });
+
 ## Installation
 
     $ npm install thumbnail
@@ -40,7 +58,8 @@ in the `rootOriginals` path provided to the constructor. If a thumbnail with the
 dimensions already exists, no new file is created and the filename of the existing thumbnail
 is returned via the callback.
 
-`width` and `height` should be the requested thumbnail size in pixels.
+`width` and `height` should be the requested thumbnail size in pixels. When only `width` is provided, the height of the thumbnail
+will be aspect ratio. When only `height` is provided, the width of the thumbnail will be aspect ratio.
 
 `cb` is called with Error or null as the first parameter. The string of the thumbnails filename
 as the second parameter. And as the third parameter a boolean if the thumb has just been created
