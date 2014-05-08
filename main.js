@@ -66,12 +66,18 @@ Thumbnail.prototype.ensureThumbnail = function ensureThumbnail(filename, width, 
   var that = this;
 
   // check if the original exists
-  fs.exists(that.rootOriginals+'/'+filename, function (exists) {
-    if (!exists) { return cb(new Error('file does not exist')); }
+  fs.stat(that.rootOriginals+'/'+filename, function(err, statsOriginal) {
+    if (err) {
+      return (cb(err));
+    }
 
-    // check if the thumb already exists or create one
-    fs.exists(that.rootThumbnails+'/'+thumbFilename, function (exists) {
-      if (exists) { return cb(null, thumbFilename, false); }
+    fs.stat(that.rootThumbnails+'/'+thumbFilename, function (err, statsThumb) {
+      if (err && err.code !== 'ENOENT') { return cb(err); }
+
+      // check if the thumb is modified after the original otherwise recreate
+      if (!err && statsOriginal.mtime < statsThumb.mtime) {
+          return cb(null, thumbFilename, false);
+      }
 
       var args = [
         'convert',
