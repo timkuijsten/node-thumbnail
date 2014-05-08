@@ -84,7 +84,7 @@ describe('Thumbnail', function () {
 
     it('should check if the original file exists', function(done) {
       thumbnail.ensureThumbnail('none.jpg', 16, 16, function(err) {
-        err.should.have.property('message', 'file does not exist');
+        err.should.have.property('code', 'ENOENT');
         done();
       });
     });
@@ -102,7 +102,7 @@ describe('Thumbnail', function () {
       });
     });
 
-    it('should create a thumbnail when it does already exist', function(done) {
+    it('should not create a thumbnail when it does already exist', function(done) {
       thumbnail.ensureThumbnail(fixtureFile, 16, 16, function (err, filename, created) {
         if (err) { throw err; }
 
@@ -111,6 +111,22 @@ describe('Thumbnail', function () {
         fs.exists(pathToThumbs + '/' + filename, function (exists) {
           exists.should.be.true;
           done();
+        });
+      });
+    });
+
+    it('should create a thumbnail when original is newer than existing thumbnail', function(done) {
+      var original = pathToOriginal + '/' + fixtureFile;
+      fs.utimes(original, new Date(), new Date(), function() {
+        thumbnail.ensureThumbnail(fixtureFile, 16, 16, function (err, filename, created) {
+          if (err) { throw err; }
+
+          created.should.be.true;
+
+          fs.exists(pathToThumbs + '/' + filename, function (exists) {
+            exists.should.be.true;
+            done();
+          });
         });
       });
     });
