@@ -2,9 +2,9 @@
 
 Small utility to easily and efficiently create thumbnails using GraphicsMagick.
 
-## Usage
+## Usage examples
 
-    // get a 100x100 thumbnail of /path/to/originals/picture.jpg
+Get a 100x100 thumbnail of /path/to/originals/picture.jpg and store it in /path/to/thumbnails
 
     var Thumbnail = require('thumbnail');
     var thumbnail = new Thumbnail('/path/to/originals', '/path/to/thumbnails');
@@ -13,7 +13,7 @@ Small utility to easily and efficiently create thumbnails using GraphicsMagick.
       // "filename" is the name of the thumb in '/path/to/thumbnails'
     });
 
-    // get a thumbnail of 100 pixels wide, height auto
+Get a thumbnail of 100 pixels wide, height auto and store it in /path/to/thumbnails
 
     var Thumbnail = require('thumbnail');
     var thumbnail = new Thumbnail('/path/to/originals', '/path/to/thumbnails');
@@ -22,7 +22,7 @@ Small utility to easily and efficiently create thumbnails using GraphicsMagick.
       // "filename" is the name of the thumb in '/path/to/thumbnails'
     });
 
-    // get a thumbnail of 100 pixels high, width auto
+Get a thumbnail of 100 pixels high, width auto and store it in /path/to/thumbnails
 
     var Thumbnail = require('thumbnail');
     var thumbnail = new Thumbnail('/path/to/originals', '/path/to/thumbnails');

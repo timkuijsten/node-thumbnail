@@ -1,6 +1,6 @@
 {
   "name": "thumbnail",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "author": {
     "name": "Tim Kuijsten",
     "email": "tim@netsend.nl",
@@ -30,6 +30,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/timkuijsten/node-thumbnail.git"
+    "url": "https://github.com/timkuijsten/node-thumbnail.git"
   }
 }

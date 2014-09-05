@@ -1,3 +1,10 @@
+2014.09.05, Version 0.1.9
+
+* fix error message if gm is missing on OS X 10.9
+* only return on error after cb is called
+* add .gitignore
+
+
 2014.05.08, Version 0.1.8
 
 * added check to see if a thumbnail is still up to date (Sander Baas)
