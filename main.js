@@ -67,17 +67,13 @@ Thumbnail.prototype.ensureThumbnail = function ensureThumbnail(filename, width, 
 
   // check if the original exists
   fs.stat(that.rootOriginals+'/'+filename, function(err, statsOriginal) {
-    if (err) {
-      return (cb(err));
-    }
+    if (err) { cb(err); return; }
 
     fs.stat(that.rootThumbnails+'/'+thumbFilename, function (err, statsThumb) {
-      if (err && err.code !== 'ENOENT') { return cb(err); }
+      if (err && err.code !== 'ENOENT') { cb(err); return; }
 
       // check if the thumb is modified after the original otherwise recreate
-      if (!err && statsOriginal.mtime < statsThumb.mtime) {
-          return cb(null, thumbFilename, false);
-      }
+      if (!err && statsOriginal.mtime < statsThumb.mtime) { cb(null, thumbFilename, false); return; }
 
       var args = [
         'convert',
@@ -105,9 +101,10 @@ Thumbnail.prototype.ensureThumbnail = function ensureThumbnail(filename, width, 
             err.message = 'gm not found, make sure GraphicsMagick is installed and gm is available in your environment. ' +
               err.message;
           }
-          return cb(err);
+          cb(err);
+          return;
         }
-        if (stderr) { return cb(new Error(stderr)); }
+        if (stderr) { cb(new Error(stderr)); return; }
 
         cb(null, thumbFilename, true);
       });
