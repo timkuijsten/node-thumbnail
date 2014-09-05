@@ -101,7 +101,7 @@ Thumbnail.prototype.ensureThumbnail = function ensureThumbnail(filename, width, 
       execFile('gm', args, opts, function(err, stdout, stderr) {
         if (err) {
           // add descriptive text if gm is not found
-          if (err.code === 127) {
+          if (err.code === 'ENOENT' || err.code === 127) {
             err.message = 'gm not found, make sure GraphicsMagick is installed and gm is available in your environment. ' +
               err.message;
           }
