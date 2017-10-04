@@ -1,5 +1,8 @@
 # thumbnail
 
+## NOTE: this project is in maintenance mode
+**Only obvious bugs will be fixed, no extensive code changes will be done.**
+
 Small utility to easily and efficiently create thumbnails using GraphicsMagick.
 
 ## Usage examples
